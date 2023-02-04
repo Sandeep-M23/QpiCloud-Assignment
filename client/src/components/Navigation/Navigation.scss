@@ -1,0 +1,40 @@
+@import "../../partials/variables";
+
+.navbar {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  background-color: $black;
+  z-index: 999;
+  box-shadow: $soft-shadow;
+
+
+  .navlist {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+
+    .item {
+      text-decoration: none;
+      color: white;
+      font-size: 1.3rem;
+      padding: 10px;
+      border-radius: 5px;
+      &.active {
+        color:$blue;
+        background-color: white;
+      }
+    }
+  }
+  
+  .right {
+    flex: 1;
+    gap: 50px;
+    align-items: center;
+  }
+}
