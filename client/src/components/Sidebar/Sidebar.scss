@@ -1,0 +1,80 @@
+@import "../../partials/variables";
+
+.sidebar {
+  background-color: white;
+    width: 200px;
+    height: 90%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    box-shadow: $primary-shadow;
+
+  
+    nav {
+      padding-bottom: 20px 0px;
+      margin-bottom:20px 0px;
+
+      h3{
+        color:white;
+        background-color: $blue;
+        text-align: center;
+        font-size: 1.4rem;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          margin-bottom: 20px;
+          font-size: 1.2rem;
+
+          .item {
+            display: block;
+            color:black;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            border: 1px solid black;
+            cursor: pointer;
+            &.active {
+              color:white;
+              background-color: black;
+            }
+          }
+          span{
+            background-color: $black;
+            color:white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            margin-right: 10px;
+
+          }
+        }
+      }
+    }
+
+    button {
+      font-size: 1.2rem;
+          border: 1px solid black;
+          border-radius: 5px;
+          padding: 15px;
+          background:none;
+          width: 100%;
+    }
+  }
+  
