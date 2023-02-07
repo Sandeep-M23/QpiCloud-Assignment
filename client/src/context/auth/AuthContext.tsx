@@ -1,4 +1,4 @@
-import { useReducer, createContext,ReactNode } from "react";
+import { useReducer, createContext, ReactNode } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -31,11 +31,11 @@ const INITIAL_STATE = {
   user: JSON.parse(localStorage.getItem("user")) || null,
   isFetching: false,
   error: null,
-  };
+};
 
 export const AuthContext = createContext<AuthState | any>(INITIAL_STATE);
 
-// Auth Service 
+// Auth Service
 interface AuthContextProviderProps {
   children: ReactNode;
 }
@@ -64,11 +64,14 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     dispatch(AuthStart());
     try {
       const res = await axios.post(
-        "http://localhost:4001/signin",
+        `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/signin`,
         { email, password },
         {
           headers: {
             "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
           },
         }
       );
@@ -77,7 +80,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
       localStorage.setItem("user", JSON.stringify(res.data.id));
       toast.success("Logged in Successfully!");
-    } catch (err:any) {
+    } catch (err: any) {
       dispatch(AuthError(err.response.data));
       toast.error(err.response.data.message);
     }
@@ -92,7 +95,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     dispatch(AuthStart());
     try {
       const res = await axios.post(
-        "http://localhost:4001/signup",
+        `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/signup`,
         {
           username: body.username,
           email: body.email,
@@ -101,6 +104,9 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         {
           headers: {
             "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
           },
         }
       );
@@ -108,8 +114,8 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       dispatch(AuthSuccess(res.data.user));
       localStorage.setItem("user", JSON.stringify(res.data.user));
       toast.success("Registered Successfully!");
-    } catch (err:any) {
-      console.log(err)
+    } catch (err: any) {
+      console.log(err);
       dispatch(AuthError(err.response.data));
       toast.error(err.response.data.message);
     }

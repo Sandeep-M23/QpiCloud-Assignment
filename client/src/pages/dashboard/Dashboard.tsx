@@ -30,8 +30,10 @@ const Dashboard: React.FC = () => {
     setTimeout(() => {
       setLoading(false);
     }, 4000);
-    
-    const socket = SocketIOClient("http://127.0.0.1:4001/");
+
+    const socket = SocketIOClient(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/`)
+
+    console.log(import.meta.env.VITE_REACT_APP_BACKEND_UR)
 
     socket.on("data", (b,l,a,p) => {
       setBarData(b);
